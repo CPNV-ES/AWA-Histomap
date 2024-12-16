@@ -1,85 +1,54 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <div></div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
+<script>
+import ContentController from "@/controllers/ContentController";
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+export default {
+  data() {
+    return {
+      content: [], // Liste des contenus
+      isModalOpen: false, // État de la popup
+      newContent: {}, //TODO Add the actual attributes of the form
+    };
+  },
+  methods: {
+    // Get content from the controller
+    async fetchContent() {
+      try {
+        this.content = await ContentController.getContentList();
+      } catch (error) {
+        console.error("Failed to load content:", error);
+      }
+    },
+    // Add new content
+    async addNewContent() {
+      try {
+        const createdContent = await ContentController.createContent(this.newContent);
+        this.content.unshift(createdContent.content);
+        this.closeModal(); // Close popup
+      } catch (error) {
+        console.error("Failed to add content:", error);
+      }
+    },
+    // Open popup
+    openModal() {
+      this.isModalOpen = true;
+    },
+    // Close popup
+    closeModal() {
+      this.isModalOpen = false;
+      this.newContent = {}; //TODO:  Add the attributes of the form |+| Reset the form
+    },
+  },
+  mounted() {
+    // Load the content when the component is mounted
+    this.fetchContent();
+  },
+};
+</script>
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
+<style>
+/* Add your styles here */
 </style>

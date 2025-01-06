@@ -1,5 +1,4 @@
 <template>
-  <!-- <Line /> -->
   <!-- <div class=" w-1 h-40"></div> -->
   <Card img_src="/cat.png" title="Titre de l'image" content="lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum "/>
 
@@ -7,7 +6,6 @@
 
 <script setup>
 import Card from "@/components/cards/Card.vue";
-import Line from "@/components/cards/Line.vue";
 
 defineProps({
   img_src: {

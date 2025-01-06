@@ -16,12 +16,10 @@
         </div>
       </div>
       <!-- Section décorative -->
-      <Line />
     </div>
   </template>
 
   <script>
-  import Line from "@/components/cards/Line.vue";
   export default {
     props: {
       img_src: {

@@ -1,10 +1,6 @@
 <template>
-  <div class="absolute top-0 flex justify-center w-screen">
-    <button @click="pushTop">Ajouter en haut</button>
-    <div class="w-1/2"></div>
-    <button @click="pushBottom">Ajouter en bas</button>
-  </div><!-- DEBUG buttons-->
-  <div class="w-screen h-screen flex justify-center px-20 overflow-x-auto">
+
+  <div class="w-screen h-screen flex justify-center px-20 overflow-x-auto sticky">
     <div class="w-full h-full">
       <div class="h-1/2 w-full flex justify-between">
         <div>
@@ -25,13 +21,14 @@
 
       <div class="relative" :style="{ width: lineWidth + 'px' }">
         <div class="flex items-center justify-between w-full h-4">
-          <!-- Point gauche -->
+          <!-- Left point  -->
           <div class="bg-slate-300 h-4 w-4 rounded-full"></div>
 
-          <!-- Ligne -->
+          <!-- Line -->
           <div class="bg-slate-300 h-1 flex-grow"></div>
+          <div class="absolute  bg-slate-500 h-1 ml-4" :style="{ width: progressLineWidth + 'px' }" style="transition: width 0.05s ease-out;"></div>
 
-          <!-- Point droit -->
+          <!-- Rigth point -->
           <div class="bg-slate-300 h-4 w-4 rounded-full"></div>
         </div>
       </div>
@@ -55,16 +52,22 @@
       <!-- bottom cards -->
     </div>
   </div>
+  <div class="absolute top-0 flex justify-center w-screen">
+    <button @click="pushTop">Ajouter en haut</button>
+    <div class="w-1/2"></div>
+    <button @click="pushBottom">Ajouter en bas</button>
+  </div><!-- DEBUG buttons-->
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import CardTop from "@/components/cards/CardTop.vue";
 import CardBottom from "@/components/cards/CardBottom.vue";
 
 const cardsTop = ref([]);
 const cardsBottom = ref([]);
 const lineWidth = ref(getLineWidth());
+const progressLineWidth = ref(0);
 const containerPadding = 160; // padding of the container left+right
 const cardWidth = 688; // width of each card with margin, to be adjusted
 
@@ -93,10 +96,46 @@ function updateLineWidth() {
   lineWidth.value = Math.max(screenWidth, totalCardsWidth);
 }
 
+
 function getLineWidth() {
   return Math.max(window.innerWidth - containerPadding, 0);
 }
 
+function updateProgessLineWidth() {
+  const scrollContainer = document.querySelector(".sticky");
+
+  let halfWidth = lineWidth.value / 2;
+  let targetWidth = 0;
+  let isAnimating = false;
+
+  function smoothUpdate() {
+    const currentWidth = progressLineWidth.value;
+    const delta = targetWidth - currentWidth;
+
+    progressLineWidth.value += delta * 0.1;
+
+    if (Math.abs(delta) > 0.5) {
+      requestAnimationFrame(smoothUpdate);
+    } else {
+      isAnimating = false;
+    }
+  }
+
+
+  scrollContainer.addEventListener("scroll", () => {
+    targetWidth = halfWidth - 32 + scrollContainer.scrollLeft;
+    halfWidth = window.innerWidth / 2 - containerPadding / 2;
+
+    if (!isAnimating) {
+      isAnimating = true;
+      requestAnimationFrame(smoothUpdate);
+    }
+  });
+}
 
 window.addEventListener("resize", updateLineWidth);
+
+onMounted(() => {
+  updateProgessLineWidth();
+});
 </script>

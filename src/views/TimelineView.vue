@@ -8,9 +8,10 @@
             <div class="flex justify-center items-center mr-[80px]">
               <div v-for="(cardtop, index) in cardsTop" :key="'top-' + index">
                 <CardTop
-                  img_src="/cat.png"
-                  title="Titre de l'image"
-                  content="lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum "
+                  :img_src="cardtop.img_src"
+                  :title="cardtop.title"
+                  :content="cardtop.content"
+                  :year="cardtop.year"
                 />
               </div>
             </div>
@@ -37,12 +38,13 @@
       <div class="h-1/2 w-full flex justify-between">
         <div>
           <div class="flex h-full">
-            <div class="flex justify-center items-center mr-[80px]">
+            <div class="flex justify-center items-center mr-[80px] ">
               <div v-for="(cardbottom, index) in cardsBottom" :key="'top-' + index">
                 <CardBottom
-                  img_src="/cat.png"
-                  title="Titre de l'image"
-                  content="lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum "
+                  :img_src="cardbottom.img_src"
+                  :title="cardbottom.title"
+                  :content="cardbottom.content"
+                  :year="cardbottom.year"
                 />
               </div>
             </div>
@@ -76,6 +78,7 @@ function pushTop() {
     img_src: "/cat.png",
     title: "Nouvelle Carte du Haut",
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    year: "2023",
   });
   updateLineWidth();
 }
@@ -85,6 +88,7 @@ function pushBottom() {
     img_src: "/cat.png",
     title: "Nouvelle Carte du Bas",
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    year: "2023",
   });
   updateLineWidth();
 }

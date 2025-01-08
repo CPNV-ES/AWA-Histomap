@@ -10,7 +10,8 @@ const app = express();
 
 // Middleware
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // MongoDB Connection
 const URI = process.env.MONGO_URI;
@@ -27,14 +28,15 @@ MongoClient.connect(URI)
 
 // API Routes
 // Add content
-app.post('/newTime', async (req, res) => {
+app.post('/new-story', async(req, res) => {
   try {
+    console.log(JSON.stringify(await req.body));
     const { date, title, description } = req.body;
     if (!date || !title || !description) {
       return res.status(400).json({ error: 'Date, title and description are required' });
     }
     const collection = db.collection('history');
-    const result = await collection.insertOne({ title, description, createdAt: new Date() });
+    const result = await collection.insertOne({ title, description, date });
     res.status(201).json({ message: 'A Story has been added successfully', content: result.ops[0] });
   } catch (error) {
     console.error("Error adding content:", error);

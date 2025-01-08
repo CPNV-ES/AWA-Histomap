@@ -27,10 +27,24 @@ const cardStyle = computed(() => ({
   minHeight: '24rem', // 384px, equivalent to h-96
 }));
 
+// Props
+defineProps({
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  date: {
+    type: String,
+    required: true,
+  },
+});
 </script>
 
 <template>
-
   <div class="flex items-center justify-center min-h-screen bg-gray-100">
     <!-- Card Container -->
     <div class="perspective">
@@ -52,9 +66,8 @@ const cardStyle = computed(() => ({
             class="w-full h-auto rounded-t-lg"
           />
           <div class="p-6">
-            <p class="text-2xl font-bold text-black">2020</p>
-            <p class="text-sm font-bold text-gray-800 hover:text-gray-700 mb-2">
-              <a href="#">OpenAI announced the GPT-4 multimodal LLM</a>
+            <p class="text-2xl font-bold text-black">{{ date }}</p>
+            <p class="text-sm font-bold text-gray-800 hover:text-gray-700 mb-2">{{ title }}
             </p>
             <div>
               <button
@@ -101,11 +114,9 @@ const cardStyle = computed(() => ({
           <!-- Foreground Content -->
           <div class="relative z-10 text-center h-full">
             <div class="relative h-full bg-black bg-opacity-50 rounded-lg p-6 shadow-lg">
-              <p class="text-xl font-bold text-white mb-4">OpenAI announced the GPT-4</p>
+              <p class="text-xl font-bold text-white mb-4">{{ title }}</p>
               <p class="text-sm text-white mb-4">
-                Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise
-                en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie
-                depuis les années 1500.
+                {{ description }}
               </p>
               <button
                 @click="flipCard"

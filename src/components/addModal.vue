@@ -1,71 +1,78 @@
 <template>
-  <div v-if="showModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
-    <div class="bg-white rounded shadow-lg p-8 w-1/3">
-      <h2 class="text-xl font-bold mb-4">Ajouter une Histoire</h2>
+  <div v-if="isOpen" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+      <h2 class="text-xl font-semibold mb-4">Ajouter une story</h2>
       <form @submit.prevent="submitForm">
         <div class="mb-4">
-          <label class="block text-sm font-bold mb-2">Titre</label>
-          <input type="text" v-model="form.title" class="w-full p-2 border rounded" required />
+          <label for="title" class="block text-sm font-medium text-gray-700">Titre</label>
+          <input
+            v-model="title"
+            type="text"
+            id="title"
+            class="mt-1 mg-1 block w-full rounded-md border-gray-300 focus:border-amber-600 shadow-sm sm:text-sm"
+          />
         </div>
-
         <div class="mb-4">
-          <label class="block text-sm font-bold mb-2">Date</label>
-          <input type="date" v-model="form.date" class="w-full p-2 border rounded" required />
+          <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
+          <input
+            v-model="date"
+            type="date"
+            id="date"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm sm:text-sm"
+          />
         </div>
-
         <div class="mb-4">
-          <label class="block text-sm font-bold mb-2">Description</label>
-          <textarea v-model="form.description" class="w-full p-2 border rounded" required></textarea>
+          <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+          <textarea
+            v-model="description"
+            id="description"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm sm:text-sm"
+          ></textarea>
         </div>
         <div class="flex justify-end">
-          <button type="button" @click="closeModal" class="mr-2 bg-gray-300 px-4 py-2 rounded">Annuler</button>
-          <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Ajouter</button>
+          <button type="button" @click="closeModal" class="mr-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
+            Cancel
+          </button>
+          <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded">
+            Save
+          </button>
         </div>
       </form>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      showModal: false,
-      form: {
-        date: '',
-        title: '',
-        description: ''
-      }
-    };
+<script setup>
+import { ref } from 'vue';
+
+// Props
+defineProps({
+  isOpen: {
+    type: Boolean,
+    required: true,
   },
-  methods: {
-    closeModal() {
-      this.showModal = false;
-    },
-    async submitForm() {
-      try {
-        const response = await fetch('http://localhost:3000/newTime', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(this.form)
-        });
-        const data = await response.json();
-        if (response.ok) {
-          alert('Histoire ajoutée avec succès');
-          this.closeModal();
-          this.$emit('contentAdded', data.content);
-        } else {
-          alert(`Erreur : ${data.error}`);
-        }
-      } catch (error) {
-        console.error('Erreur lors de l\'ajout :', error);
-        alert('Une erreur est survenue');
-      }
-    }
-  }
+});
+
+
+const emit = defineEmits(['close', 'save']);
+
+
+const title = ref('');
+const date = ref('');
+const description = ref('');
+
+
+const closeModal = () => {
+  emit('close');
+};
+
+const submitForm = () => {
+  const data = { title: title.value, date: date.value, description: description.value };
+  emit('save', data);
+  closeModal();
 };
 </script>
 
 <style scoped>
-/* Ajoutez du style personnalisé si nécessaire */
+
 </style>

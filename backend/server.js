@@ -1,7 +1,11 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const { MongoClient } = require('mongodb');
+/*!
+ * Nom du fichier : server.js
+ * Auteur : VicMtn
+ * Date : 16.12.2024
+ * Description : Ce script est le point d'entrée de l'api backend
+ * Licence : MIT
+ * Version : 1.0.0
+ */
 
 require ('dotenv').config();
 const app = express();

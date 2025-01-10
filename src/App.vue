@@ -1,71 +1,59 @@
 <script setup>
+import { ref, onMounted } from 'vue';
+import AddModal from '@/components/AddModal.vue';
+import Card from '@/components/Card.vue';
 import Timelineview from "./views/TimelineView.vue";
+
+const stories = ref([]); // Liste des histoires
+
+
+
+const fetchContent = async () => {
+  try {
+    const response = await fetch('http://localhost:3000/content');
+    stories.value = await response.json();
+  } catch (error) {
+    console.error('Erreur lors de la récupération des contenus :', error);
+  }
+};
+
+const modalOpen = ref(false);
+
+const handleSave = (data) => {
+  console.log('Saved data:', data);
+  // TODO: create saving method
+
+};
+
+onMounted(fetchContent);
 </script>
 
 <template>
-  <Timelineview />
+  <div>
+    <h1 class="text-center text-2xl font-bold mb-4">Timeline Historique</h1>
+    <div class="p-4">
+      <button @click="modalOpen = true" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded">
+        Add New Item
+      </button>
+      <AddModal :isOpen="modalOpen" @close="modalOpen = false" @save="handleSave" />
+    </div>
+
+    <!-- Liste des histoires affichées avec le composant Card -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <!-- <Card
+        v-for="story in stories"
+        :key="story._id"
+        :date="story.date"
+        :title="story.title"
+        :description="story.description"
+      /> -->
+
+
+    <Timelineview />
+    </div>
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
+<style>
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
 </style>

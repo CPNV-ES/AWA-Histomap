@@ -1,31 +1,34 @@
 <template>
-  <div v-if="isOpen" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
+  <div v-if="isOpen" class="z-50 fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
     <div class="bg-white p-6 rounded-lg shadow-lg w-96">
       <h2 class="text-xl font-semibold mb-4">Ajouter une story</h2>
-      <form @submit.prevent="submitForm">
+      <form @submit.prevent="onSubmit">
         <div class="mb-4">
           <label for="title" class="block text-sm font-medium text-gray-700">Titre</label>
           <input
-            v-model="title"
+            v-model="formData.title"
             type="text"
             id="title"
+            required
             class="mt-1 mg-1 block w-full rounded-md border-gray-300 focus:border-amber-600 shadow-sm sm:text-sm"
           />
         </div>
         <div class="mb-4">
           <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
           <input
-            v-model="date"
+            v-model="formData.date"
             type="date"
             id="date"
+            required
             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm sm:text-sm"
           />
         </div>
         <div class="mb-4">
           <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
           <textarea
-            v-model="description"
+            v-model="formData.description"
             id="description"
+            required
             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm sm:text-sm"
           ></textarea>
         </div>
@@ -42,35 +45,54 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue';
+<script>
+import axios from 'axios'
 
-// Props
-defineProps({
-  isOpen: {
-    type: Boolean,
-    required: true,
+export default {
+  name: 'ModalCreateStory',
+  props: {
+    isOpen: {
+      type: Boolean,
+      default: false
+    }
   },
-});
+  data() {
+    return {
+      formData: {
+        title: '',
+        date: '',
+        description: ''
+      }
+    }
+  },
+  methods: {
+    closeModal() {
+      this.$emit('close')
+    },
 
+    async onSubmit() {
+      try {
+        const response = await axios.post('http://localhost:3000/stories', this.formData)
 
-const emit = defineEmits(['close', 'save']);
+        const { insertedId } = response.data
 
+        const newStory = {
+          ...this.formData,
+          _id: insertedId
+        }
 
-const title = ref('');
-const date = ref('');
-const description = ref('');
+        this.$emit('createStory', newStory)
 
+        this.formData = { title: '', date: '', description: '' }
 
-const closeModal = () => {
-  emit('close');
-};
-
-const submitForm = () => {
-  const data = { title: title.value, date: date.value, description: description.value };
-  emit('save', data);
-  closeModal();
-};
+        this.closeModal()
+      } catch (error) {
+        console.error('Erreur lors de la création de la story :', error)
+        alert('Impossible de créer la story.')
+      }
+    }
+  }
+}
 </script>
 
 <style scoped>

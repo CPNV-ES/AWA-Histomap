@@ -17,11 +17,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// MongoDB Connection
-const URI = process.env.MONGO_URI;
-const PORT = process.env.PORT;
-const DB_NAME = 'HistoryAWA';
-let db;
+function LogTransaction(req, res) {
+  console.log(`[${new Date().toLocaleString()}] ${req.method} ${req.url} ${res}`)
+}
 
 MongoClient.connect(URI)
   .then(client => {

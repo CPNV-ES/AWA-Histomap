@@ -1,5 +1,8 @@
 <template>
-    <div class="h-[270px] w-[400px] mx-36">
+      <div
+        class="h-[270px] w-[400px] "
+        :style="{ marginLeft: margin + 'px', marginRight: margin + 'px' }"
+      >
       <!-- Conteneur principal relatif pour positionner les enfants -->
       <div class="h-full w-full relative rounded-lg overflow-hidden hover:scale-105 transition-all duration-500">
         <!-- Image -->
@@ -41,6 +44,10 @@
       width: {
         type: String,
         default: "400px",
+      },
+      margin: {
+        type: String,
+        default: "144",
       },
     },
   };

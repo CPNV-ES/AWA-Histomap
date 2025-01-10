@@ -27,7 +27,7 @@
 
           <!-- Line -->
           <div class="bg-slate-300 h-1 flex-grow"></div>
-          <div class="absolute  bg-slate-500 h-1 ml-4" :style="{ width: progressLineWidth + 'px' }" style="transition: width 0.05s ease-out;"></div>
+          <div class="absolute  bg-slate-500 h-1 ml-4" :style="{ width: progressLineWidth + 'px' }" style="transition: width -1s ease-out;"></div>
 
           <!-- Rigth point -->
           <div class="bg-slate-300 h-4 w-4 rounded-full"></div>
@@ -38,14 +38,18 @@
       <div class="h-1/2 w-full flex justify-between">
         <div>
           <div class="flex h-full">
-            <div class="flex justify-center items-center mr-[80px] ">
-              <div v-for="(cardbottom, index) in cardsBottom" :key="'top-' + index">
-                <CardBottom
-                  :img_src="cardbottom.img_src"
-                  :title="cardbottom.title"
-                  :content="cardbottom.content"
-                  :year="cardbottom.year"
-                />
+            <div class="flex justify-center items-center mr-[80px]">
+              <div :style="{width: cardWidth/2 + 'px' }" class="h-1"></div>
+              <div v-for="(cardbottom, index) in cardsBottom" :key="'bottom-' + index">
+                <div >
+                  <CardBottom
+                    :img_src="cardbottom.img_src"
+                    :title="cardbottom.title"
+                    :content="cardbottom.content"
+                    :year="cardbottom.year"
+                    :margin="marginCards"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -55,9 +59,7 @@
     </div>
   </div>
   <div class="absolute top-0 flex justify-center w-screen">
-    <button @click="pushTop">Ajouter en haut</button>
-    <div class="w-1/2"></div>
-    <button @click="pushBottom">Ajouter en bas</button>
+    <button @click="push">Ajouter</button>
   </div><!-- DEBUG buttons-->
 </template>
 
@@ -72,6 +74,8 @@ const lineWidth = ref(getLineWidth());
 const progressLineWidth = ref(0);
 const containerPadding = 160; // padding of the container left+right
 const cardWidth = 688; // width of each card with margin, to be adjusted
+const marginCards = 144; // margin of each card, to be adjusted
+const flip = ref(false);
 
 function pushTop() {
   cardsTop.value.push({
@@ -90,14 +94,22 @@ function pushBottom() {
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     year: "2023",
   });
-  updateLineWidth();
+  updateLineWidth(cardWidth);
 }
 
+function push() {
+  flip.value = !flip.value;
+  if (flip.value) {
+    pushTop();
+  } else {
+    pushBottom();
+  }
+}
 // Calcul initial et mises à jour
-function updateLineWidth() {
+function updateLineWidth(correction = 0) {
   const totalCardsWidth = Math.max(cardsTop.value.length, cardsBottom.value.length) * cardWidth;
   const screenWidth = window.innerWidth - containerPadding;
-  lineWidth.value = Math.max(screenWidth, totalCardsWidth);
+  lineWidth.value = Math.max(screenWidth, totalCardsWidth)+correction/2;
 }
 
 

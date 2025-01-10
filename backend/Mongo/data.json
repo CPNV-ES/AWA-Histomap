@@ -1,0 +1,117 @@
+[
+  {
+    "title": "Première transmission radio transatlantique",
+    "date": "1901",
+    "description": "Guglielmo Marconi réussit à envoyer un signal radio à travers l'Atlantique, marquant le début des communications sans fil à grande distance."
+  },
+  {
+    "title": "Photographie en couleur",
+    "date": "1907",
+    "description": "Guglielmo Marconi réussit à envoyer un signal radio à travers l'Atlantique, marquant le début des communications sans fil à grande distance."
+  },
+  {
+    "title": "Lancement de la Ford Model T",
+    "date": "1908",
+    "description": "Henry Ford introduit la Ford Model T, première automobile produite en série, rendant les voitures accessibles au grand public."
+  },
+  {
+    "title": "Première démonstration de télévision électronique",
+    "date": "1927",
+    "description": "Philo Farnsworth présente la télévision électronique, jetant les bases de la diffusion télévisée moderne."
+  },
+  {
+    "title": "Découverte de la fission nucléaire",
+    "date": "1938",
+    "description": "Lise Meitner et Otto Frisch expliquent le phénomène de la fission nucléaire, ouvrant la voie à l'énergie atomique et aux armes nucléaires."
+  },
+  {
+    "title": "Invention du transistor",
+    "date": "1947",
+    "description": "John Bardeen, Walter Brattain et William Shockley inventent le transistor aux Bell Labs, révolutionnant l'électronique et l'informatique."
+  },
+  {
+    "title": "Création du premier circuit intégré",
+    "date": "1958",
+    "description": "Jack Kilby de Texas Instruments conçoit le circuit intégré, permettant de miniaturiser les composants électroniques."
+  },
+  {
+    "title": "Naissance d'ARPANET",
+    "date": "1969",
+    "description": "Le réseau ARPANET est mis en service, servant de base au futur Internet et reliant pour la première fois des ordinateurs distants."
+  },
+  {
+    "title": "Lancement du premier microprocesseur",
+    "date": "1971",
+    "description": "Intel commercialise le 4004, considéré comme le premier microprocesseur, qui va accélérer l'expansion des ordinateurs personnels."
+  },
+  {
+    "title": "Premier appel téléphonique mobile",
+    "date": "1973",
+    "description": "Martin Cooper de Motorola passe le premier appel sur un prototype de téléphone mobile, amorçant l'ère de la téléphonie portable."
+  },
+  {
+    "title": "Sortie de l’Altair 8800",
+    "date": "1975",
+    "description": "Considéré comme l'un des premiers micro-ordinateurs destinés au grand public, il suscite l'intérêt pour l’informatique personnelle."
+  },
+  {
+    "title": "Commercialisation de l’IBM PC",
+    "date": "1981",
+    "description": "IBM lance son premier PC, standardisant la plateforme informatique et ouvrant la voie à la domination du marché par les compatibles PC."
+  },
+  {
+    "title": "Invention du World Wide Web",
+    "date": "1989",
+    "description": "Tim Berners-Lee crée le WWW au CERN, posant les fondations de la navigation hypertexte et de la démocratisation d'Internet."
+  },
+  {
+    "title": "Premier smartphone (IBM Simon)",
+    "date": "1992",
+    "description": "IBM présente le Simon, considéré comme le premier appareil combinant téléphonie et fonctions d'assistant personnel."
+  },
+  {
+    "title": "Victoire de Deep Blue contre Garry Kasparov",
+    "date": "1997",
+    "description": "Le supercalculateur d'IBM bat pour la première fois le champion du monde d'échecs, marquant une percée en intelligence artificielle."
+  },
+  {
+    "title": "Création de Google",
+    "date": "1998",
+    "description": "Larry Page et Sergey Brin fondent Google, qui deviendra le moteur de recherche le plus utilisé dans le monde."
+  },
+  {
+    "title": "Sortie de l'iPod",
+    "date": "2001",
+    "description": "Apple lance l'iPod, qui révolutionne l'industrie de la musique et popularise le concept de baladeur numérique."
+  },
+  {
+    "title": "Lancement de Facebook",
+    "date": "2004",
+    "description": "Mark Zuckerberg crée Facebook, qui deviendra le plus grand réseau social au monde et transformera la communication en ligne."
+  },
+  {
+    "title": "Sortie de l'iPhone",
+    "date": "2007",
+    "description": "Apple présente le premier iPhone, marquant un tournant dans l'industrie du mobile et popularisant les smartphones modernes."
+  },
+  {
+    "title": "Premières applications de CRISPR",
+    "date": "2012",
+    "description": "La technologie d’édition génétique CRISPR-Cas9 est mise en avant, offrant la possibilité de modifier l’ADN de manière précise et efficace."
+  },
+  {
+    "title": "Lancement de GPT-3",
+    "date": "2020",
+    "description": "OpenAI introduit GPT-3, un modèle de traitement du langage naturel capable de générer des textes complexes à partir de simples requêtes."
+  },
+  {
+    "title": "Arrivée de GPT-4",
+    "date": "2023",
+    "description": "La nouvelle génération de modèles GPT est lancée, proposant des améliorations significatives en matière de compréhension et de génération de texte."
+  },
+  {
+    "title": "Progrès majeurs en informatique quantique",
+    "date": "2024",
+    "description": "Plusieurs entreprises annoncent des avancées notables dans le domaine du calcul quantique, laissant entrevoir de nouvelles perspectives de puissance de calcul."
+  }
+]

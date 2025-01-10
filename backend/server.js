@@ -7,8 +7,8 @@
  * Version : 1.0.0
  */
 
-require ('dotenv').config();
-const app = express();
+import express from 'express'
+import cors from 'cors'
 
 
 

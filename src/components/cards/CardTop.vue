@@ -1,5 +1,5 @@
 <template>
-  <Card class="bg-yellow-100" img_src="/cat.png" title="Titre de l'image" content="lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum "/>
+  <Card img_src="/cat.png" title="Titre de l'image" content="lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum "/>
 
   <div class="bottom-0 relative rotate flex justify-center h-1 pt-12 ">
     <div>

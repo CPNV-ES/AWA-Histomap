@@ -1,5 +1,4 @@
 <template>
-
   <div class="w-screen h-screen flex justify-center px-20 overflow-x-auto sticky">
     <div class="w-full h-full">
       <div class="h-1/2 w-full flex justify-between">

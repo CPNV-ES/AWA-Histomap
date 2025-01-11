@@ -62,6 +62,7 @@ export default {
         :key="story._id"
         :date="story.date"
         :title="story.title"
+        :image="story.image"
         :description="story.description"
       />
     </div>

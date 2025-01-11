@@ -1,5 +1,5 @@
 # Rapport technique
-
+AWA-Histomap par Victorien Montavon et Benoit Pierrehumbert
 ## Introduction
 Ce document aura pour but d'expliquer le flux d'informations de l'application, les choix techniques et les difficultés rencontrées lors de la réalisation de ce projet.
 

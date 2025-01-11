@@ -65,7 +65,7 @@
 
 </template>
 
-<script setup>
+<script>
 import { ref, onMounted } from "vue";
 import CardTop from "@/components/cards/CardTop.vue";
 import CardBottom from "@/components/cards/CardBottom.vue";
@@ -151,9 +151,46 @@ function updateProgessLineWidth() {
   });
 }
 
+function loadStories() {
+  //loop over the stories and push them to the cards
+  for (let i = 0; i < stories.length; i++) {
+    if (i % 2 === 0) {
+      cardsTop.value.push(stories[i]);
+    } else {
+      cardsBottom.value.push(stories[i]);
+    }
+  }
+}
 window.addEventListener("resize", updateLineWidth);
 
 onMounted(() => {
   updateProgessLineWidth();
+  loadStories();
 });
+
+export default {
+  components: {
+    CardTop,
+    CardBottom,
+  },
+  setup() {
+    return {
+      cardsTop,
+      cardsBottom,
+      lineWidth,
+      progressLineWidth,
+      containerPadding,
+      marginCards,
+      cardWidth,
+      flip,
+      push,
+    };
+  },
+  props: {
+    stories: {
+      type: Array,
+      required: false,
+    },
+  },
+};
 </script>

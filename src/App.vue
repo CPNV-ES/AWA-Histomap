@@ -46,21 +46,7 @@ export default {
 </script>
 
 <template>
-  
-  
-    <Timelineview />
-
-    <!-- Liste des histoires affichées avec le composant Card 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <Card
-        v-for="story in stories"
-        :key="story._id"
-        :date="story.date"
-        :title="story.title"
-        :description="story.description"
-      />
-    </div>-->
-  
+    <Timelineview :stories=stories />
     <div class="absolute top-0 w-screen flex">
       <div class="p-4 w-48">
         <button

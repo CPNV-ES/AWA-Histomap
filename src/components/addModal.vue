@@ -69,8 +69,33 @@ export default {
     closeModal() {
       this.$emit('close')
     },
+    /*
+        formatDate() {
+          const today = new Date();
+          const yyyy = today.getFullYear();
+          let mm = today.getMonth() + 1; // Months start at 0!
+          let dd = today.getDate();
+
+          if (dd < 10) dd = '0' + dd;
+          if (mm < 10) mm = '0' + mm;
+
+          const formattedToday = dd + '/' + mm + '/' + yyyy;
+        }*/
+
+    validateForm() {
+      if (this.formData.title.length < 5) {
+        return alert('Le titre doit contenir au moins 5 caractères.')
+      } else if (this.formData.description.length < 100) {
+        return alert(
+          'La description doit contenir au moins 100 caractères pour avoir de la cohérence.',
+        )
+      }
+      return true
+    },
 
     async onSubmit() {
+      if (!this.validateForm()) return
+
       try {
         const response = await axios.post('http://localhost:3000/stories', this.formData)
 

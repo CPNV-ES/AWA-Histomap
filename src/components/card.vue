@@ -6,6 +6,7 @@ export default {
     description: { type: String, required: true },
     date: { type: String, required: true },
     margin: { type: Number, default: 144 },
+    img_src: { type: String, required: true, default: 'https://esi.uclm.es/assets/uploads/2023/03/0_gpt4.jpeg' },
   },
   data() {
     return {
@@ -60,12 +61,12 @@ export default {
       >
         <!-- Front Side -->
         <div
-          class="bg-white border h-full border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+          class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
           ref="frontSide"
           :class="{ hidden: isHidden }"
         >
           <img
-            src="https://esi.uclm.es/assets/uploads/2023/03/0_gpt4.jpeg"
+            :src=" img_src "
             alt="OpenAI"
             class="w-full h-auto rounded-t-lg"
           />
@@ -87,7 +88,7 @@ export default {
 
         <!-- Back Side -->
         <div
-          class="backface-hidden absolute rotate-y-180 h-full overflow-hidden bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+          class="backface-hidden absolute rotate-y-180 w-full h-full overflow-hidden bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
           ref="backSide"
         >
           <div

@@ -10,7 +10,7 @@
                 <CardTop
                   :img_src="cardtop.img_src"
                   :title="cardtop.title"
-                  :content="cardtop.content"
+                  :description="cardtop.description"
                   :year="cardtop.year"
                 />
               </div>
@@ -38,14 +38,14 @@
       <div class="h-1/2 w-full flex justify-between">
         <div>
           <div class="flex h-full">
-            <div class="flex justify-center items-center mr-[80px]">
+            <div class="flex justify-center mr-[80px]">
               <div :style="{width: cardWidth/2 + 'px' }" class="h-1"></div>
               <div v-for="(cardbottom, index) in cardsBottom" :key="'bottom-' + index">
-                <div >
+                <div class="pt-[4rem]">
                   <CardBottom
                     :img_src="cardbottom.img_src"
                     :title="cardbottom.title"
-                    :content="cardbottom.content"
+                    :description="cardbottom.description"
                     :year="cardbottom.year"
                     :margin="marginCards"
                   />
@@ -57,7 +57,7 @@
       </div>
       <!-- bottom cards -->
     </div>
-    <div class="absolute pr-96 pt-48 top-0 flex justify-center w-screen">
+    <div class="absolute pr-[600px] pt-16 top-0 flex justify-center w-screen">
     <button @click="push">Ajouter</button>
     </div>
   </div>
@@ -80,9 +80,9 @@ const flip = ref(false);
 
 function pushTop() {
   cardsTop.value.push({
-    img_src: "/cat.png",
+    img_src: "https://esi.uclm.es/assets/uploads/2023/03/0_gpt4.jpeg",
     title: "Nouvelle Carte du Haut",
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
     year: "2023",
   });
   updateLineWidth();
@@ -90,9 +90,9 @@ function pushTop() {
 
 function pushBottom() {
   cardsBottom.value.push({
-    img_src: "/cat.png",
+    img_src: "https://esi.uclm.es/assets/uploads/2023/03/0_gpt4.jpeg",
     title: "Nouvelle Carte du Bas",
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     year: "2023",
   });
   updateLineWidth(cardWidth);

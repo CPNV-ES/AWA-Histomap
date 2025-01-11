@@ -5,7 +5,10 @@ export default {
     title: { type: String, required: true },
     description: { type: String, required: true },
     date: { type: String, required: true },
-    image: { type: String, required: true },
+    margin: { type: Number, default: 144 },
+    year: { type: String, required: true },
+    img_src: { type: String, required: true, default: 'https://esi.uclm.es/assets/uploads/2023/03/0_gpt4.jpeg' },
+
   },
   data() {
     return {
@@ -21,7 +24,7 @@ export default {
     cardStyle() {
       return {
         height: `${this.cardHeight}px`,
-        minHeight: '24rem',
+        minHeight: '18rem',
       }
     }
   },
@@ -51,20 +54,28 @@ export default {
 </script>
 
 <template>
-  <div class="flex items-center justify-center min-h-screen bg-gray-100">
-    <div class="perspective">
+  <div
+        class="h-[220px] w-[400px] "
+        :style="{ marginLeft: margin + 'px', marginRight: margin + 'px' }"
+      >
+    <div class="perspective h-[220px] w-[400px]">
       <div
-        class="relative w-64 h-96 transition-all duration-[1000ms] transform-gpu"
+        class="relative transition-all duration-[1000ms] transform-gpu"
         :class="{ 'rotate-y-180': isFlipped }"
         :style="cardStyle"
       >
         <!-- Front Side -->
         <div
-          class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+          class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
           ref="frontSide"
           :class="{ hidden: isHidden }"
         >
-          <img :src="image"  alt="cover" class="w-full h-auto rounded-t-lg" />
+          <img
+            :src=" img_src "
+            alt="OpenAI"
+            class="w-full h-auto rounded-t-lg"
+          />
+
           <div class="p-6">
             <p class="text-2xl font-bold text-black dark:text-white dark:hover:text-slate-300">
               {{ date }}
@@ -87,7 +98,7 @@ export default {
 
         <!-- Back Side -->
         <div
-          class="backface-hidden absolute rotate-y-180 overflow-hidden max-w-sm h-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+          class="backface-hidden absolute rotate-y-180 w-full h-full overflow-hidden bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
           ref="backSide"
         >
           <div

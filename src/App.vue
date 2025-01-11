@@ -58,6 +58,7 @@ export default {
       <AddModal :isOpen="modalOpen" @close="handleCloseModal" @createStory="CreateStory" />
     </div>
     <h1 class="text-center w-full text-2xl font-bold mt-4">Timeline Historique</h1>
+
   </div>
 </template>
 

@@ -6,7 +6,7 @@
       <!-- Conteneur principal relatif pour positionner les enfants -->
       <div class="h-full w-full relative rounded-lg overflow-hidden hover:scale-105 transition-all duration-500">
         <!-- Image -->
-        <img :src="img_src" alt="cat" class="rounded-lg blur-lg">
+        <img :src="image" alt="cat" class="rounded-lg blur-lg">
         <!-- Contenu superposé -->
         <div class="absolute inset-0 flex flex-col justify-center items-center bg-black/30 p-5 text-white">
           <div class="w-full h-1/5">
@@ -25,7 +25,7 @@
   <script>
   export default {
     props: {
-      img_src: {
+      image: {
         type: String,
         required: true,
       },

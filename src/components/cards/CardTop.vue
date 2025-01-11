@@ -1,5 +1,5 @@
 <template>
-  <Card :img_src=img_src :title= title :description=description :margin=margin />
+  <Card :image=image :title= title :description=description :margin=margin />
 
   <div class="bottom-0 relative rotate flex justify-center h-1 mt-[8rem] ">
     <div>
@@ -19,7 +19,7 @@
 import Card from "@/components/card.vue";
 
 defineProps({
-  img_src: {
+  image: {
     type: String,
     required: true,
   },

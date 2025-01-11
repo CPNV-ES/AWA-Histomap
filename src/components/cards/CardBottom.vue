@@ -12,7 +12,7 @@
     </div>
   </div>
 
-  <Card :img_src=img_src :title= title :description=description :margin=margin />
+  <Card :image=image :title= title :description=description :margin=margin />
 
 </template>
 
@@ -20,7 +20,7 @@
 import Card from "@/components/card.vue";
 
 defineProps({
-  img_src: {
+  image: {
     type: String,
     required: true,
   },

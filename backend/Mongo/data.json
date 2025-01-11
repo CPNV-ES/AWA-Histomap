@@ -2,116 +2,139 @@
   {
     "title": "Première transmission radio transatlantique",
     "date": "1901",
-    "description": "Guglielmo Marconi réussit à envoyer un signal radio à travers l'Atlantique, marquant le début des communications sans fil à grande distance."
+    "description": "Guglielmo Marconi réussit à envoyer un signal radio à travers l'Atlantique, marquant le début des communications sans fil à grande distance.",
+    "image": "https://www.francetvinfo.fr/pictures/XRMoTfxNFK-2PwMJclWsTIByUa4/1200x675/2021/12/11/phpQGXyZH.jpg"
   },
   {
     "title": "Photographie en couleur",
     "date": "1907",
-    "description": "Guglielmo Marconi réussit à envoyer un signal radio à travers l'Atlantique, marquant le début des communications sans fil à grande distance."
+    "description": "Guglielmo Marconi réussit à envoyer un signal radio à travers l'Atlantique, marquant le début des communications sans fil à grande distance.",
+    "image": "https://www.9lives-magazine.com/wp-content/uploads/2021/05/Tartan_Ribbon-copie.jpg"
   },
   {
     "title": "Lancement de la Ford Model T",
     "date": "1908",
-    "description": "Henry Ford introduit la Ford Model T, première automobile produite en série, rendant les voitures accessibles au grand public."
+    "description": "Henry Ford introduit la Ford Model T, première automobile produite en série, rendant les voitures accessibles au grand public.",
+    "image": "https://annuelauto.ca/wp-content/uploads/2019/08/Ford-Model-T-1908.jpg"
   },
   {
     "title": "Première démonstration de télévision électronique",
     "date": "1927",
-    "description": "Philo Farnsworth présente la télévision électronique, jetant les bases de la diffusion télévisée moderne."
+    "description": "Philo Farnsworth présente la télévision électronique, jetant les bases de la diffusion télévisée moderne.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Braun_HF_1.jpg"
   },
   {
     "title": "Découverte de la fission nucléaire",
     "date": "1938",
-    "description": "Lise Meitner et Otto Frisch expliquent le phénomène de la fission nucléaire, ouvrant la voie à l'énergie atomique et aux armes nucléaires."
+    "description": "Lise Meitner et Otto Frisch expliquent le phénomène de la fission nucléaire, ouvrant la voie à l'énergie atomique et aux armes nucléaires.",
+    "image": "https://www.science-et-vie.com/wp-content/uploads/scienceetvie/2023/03/file-20190205-86205-ff9763-768x565-1.jpeg"
   },
   {
     "title": "Invention du transistor",
     "date": "1947",
-    "description": "John Bardeen, Walter Brattain et William Shockley inventent le transistor aux Bell Labs, révolutionnant l'électronique et l'informatique."
+    "description": "John Bardeen, Walter Brattain et William Shockley inventent le transistor aux Bell Labs, révolutionnant l'électronique et l'informatique.",
+    "image": "https://www.fetedelaradio.com/wp-content/uploads/1947-William-Shockley-John-Bardeen-Walter-Brattain.jpg"
   },
   {
     "title": "Création du premier circuit intégré",
     "date": "1958",
-    "description": "Jack Kilby de Texas Instruments conçoit le circuit intégré, permettant de miniaturiser les composants électroniques."
+    "description": "Jack Kilby de Texas Instruments conçoit le circuit intégré, permettant de miniaturiser les composants électroniques.",
+    "image": "https://lh5.googleusercontent.com/proxy/4c0eN07WimuqG-ZbNtKDUzvDd2XSVKPXK0uU3x705gocRqhw-LL5r9g5dg06Lx_TiURUlMndTjq-1WfmsaIZl7h-u1yr-REEBvJxUcw9kFuFO_njs-jBNPY"
   },
   {
     "title": "Naissance d'ARPANET",
     "date": "1969",
-    "description": "Le réseau ARPANET est mis en service, servant de base au futur Internet et reliant pour la première fois des ordinateurs distants."
+    "description": "Le réseau ARPANET est mis en service, servant de base au futur Internet et reliant pour la première fois des ordinateurs distants.",
+    "image": "https://cyberinstitut.fr/wp-content/uploads/2024/05/ARPANET-LAncetre-de-lInternet-et-Son-Histoire.png"
   },
   {
     "title": "Lancement du premier microprocesseur",
     "date": "1971",
-    "description": "Intel commercialise le 4004, considéré comme le premier microprocesseur, qui va accélérer l'expansion des ordinateurs personnels."
+    "description": "Intel commercialise le 4004, considéré comme le premier microprocesseur, qui va accélérer l'expansion des ordinateurs personnels.",
+    "image": "https://www.herodote.net/_image/marcian-hoff.jpg"
   },
   {
     "title": "Premier appel téléphonique mobile",
     "date": "1973",
-    "description": "Martin Cooper de Motorola passe le premier appel sur un prototype de téléphone mobile, amorçant l'ère de la téléphonie portable."
+    "description": "Martin Cooper de Motorola passe le premier appel sur un prototype de téléphone mobile, amorçant l'ère de la téléphonie portable.",
+    "image": "https://www.francebleu.fr/s3/cruiser-production/2023/04/32798de7-ab4f-4077-aae0-f2a42c40d199/1200x680_sc_000-33bt6bt.jpg"
   },
   {
     "title": "Sortie de l’Altair 8800",
     "date": "1975",
-    "description": "Considéré comme l'un des premiers micro-ordinateurs destinés au grand public, il suscite l'intérêt pour l’informatique personnelle."
+    "description": "Considéré comme l'un des premiers micro-ordinateurs destinés au grand public, il suscite l'intérêt pour l’informatique personnelle.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/0/01/Altair_8800_Computer.jpg"
   },
   {
     "title": "Commercialisation de l’IBM PC",
     "date": "1981",
-    "description": "IBM lance son premier PC, standardisant la plateforme informatique et ouvrant la voie à la domination du marché par les compatibles PC."
+    "description": "IBM lance son premier PC, standardisant la plateforme informatique et ouvrant la voie à la domination du marché par les compatibles PC.",
+    "image": "https://img.rts.ch/articles/2011/image/b3sy1h-27919664.image?w=1200&h=630"
   },
   {
     "title": "Invention du World Wide Web",
     "date": "1989",
-    "description": "Tim Berners-Lee crée le WWW au CERN, posant les fondations de la navigation hypertexte et de la démocratisation d'Internet."
+    "description": "Tim Berners-Lee crée le WWW au CERN, posant les fondations de la navigation hypertexte et de la démocratisation d'Internet.",
+    "image": "https://cds.cern.ch/images/CERN-GE-9407011-31/file?size=large"
   },
   {
     "title": "Premier smartphone (IBM Simon)",
     "date": "1992",
-    "description": "IBM présente le Simon, considéré comme le premier appareil combinant téléphonie et fonctions d'assistant personnel."
+    "description": "IBM présente le Simon, considéré comme le premier appareil combinant téléphonie et fonctions d'assistant personnel.",
+    "image": "https://cdn.unitycms.io/images/5DZr1tDfqhk8hec1f5bri0.jpg?op=ocroped&val=1200,630,1000,1000,0,0&sum=s9e4nIQtlIM"
   },
   {
     "title": "Victoire de Deep Blue contre Garry Kasparov",
     "date": "1997",
-    "description": "Le supercalculateur d'IBM bat pour la première fois le champion du monde d'échecs, marquant une percée en intelligence artificielle."
+    "description": "Le supercalculateur d'IBM bat pour la première fois le champion du monde d'échecs, marquant une percée en intelligence artificielle.",
+    "image": "https://www.cscience.ca/wp-content/uploads/2020/08/Kasparov-vs-deep-blue.jpeg"
   },
   {
     "title": "Création de Google",
     "date": "1998",
-    "description": "Larry Page et Sergey Brin fondent Google, qui deviendra le moteur de recherche le plus utilisé dans le monde."
+    "description": "Larry Page et Sergey Brin fondent Google, qui deviendra le moteur de recherche le plus utilisé dans le monde.",
+    "image": "https://foxglove-partner.com/wp-content/uploads/2022/11/image1-1.jpg"
   },
   {
     "title": "Sortie de l'iPod",
     "date": "2001",
-    "description": "Apple lance l'iPod, qui révolutionne l'industrie de la musique et popularise le concept de baladeur numérique."
+    "description": "Apple lance l'iPod, qui révolutionne l'industrie de la musique et popularise le concept de baladeur numérique.",
+    "image": "https://media.lesechos.com/api/v1/images/view/627bc9656daba1052d2ff136/1280x720/0701538127922-web-tete.jpg"
   },
   {
     "title": "Lancement de Facebook",
     "date": "2004",
-    "description": "Mark Zuckerberg crée Facebook, qui deviendra le plus grand réseau social au monde et transformera la communication en ligne."
+    "description": "Mark Zuckerberg crée Facebook, qui deviendra le plus grand réseau social au monde et transformera la communication en ligne.",
+    "image": "https://www.usine-digitale.fr/mediatheque/9/0/2/000351209_896x598_c.jpg"
   },
   {
     "title": "Sortie de l'iPhone",
     "date": "2007",
-    "description": "Apple présente le premier iPhone, marquant un tournant dans l'industrie du mobile et popularisant les smartphones modernes."
+    "description": "Apple présente le premier iPhone, marquant un tournant dans l'industrie du mobile et popularisant les smartphones modernes.",
+    "image": "https://pic.clubic.com/v1/images/2122420/raw"
   },
   {
     "title": "Premières applications de CRISPR",
     "date": "2012",
-    "description": "La technologie d’édition génétique CRISPR-Cas9 est mise en avant, offrant la possibilité de modifier l’ADN de manière précise et efficace."
+    "description": "La technologie d’édition génétique CRISPR-Cas9 est mise en avant, offrant la possibilité de modifier l’ADN de manière précise et efficace.",
+    "image": "https://medias.pourlascience.fr/api/v1/images/view/5de147193e45464b067fcc35/wide_1300/image.jpg"
   },
   {
     "title": "Lancement de GPT-3",
     "date": "2020",
-    "description": "OpenAI introduit GPT-3, un modèle de traitement du langage naturel capable de générer des textes complexes à partir de simples requêtes."
+    "description": "OpenAI introduit GPT-3, un modèle de traitement du langage naturel capable de générer des textes complexes à partir de simples requêtes.",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-L1c7WdN-xNEobjHRU1_6drxxlacJsxXqTw&s"
   },
   {
     "title": "Arrivée de GPT-4",
     "date": "2023",
-    "description": "La nouvelle génération de modèles GPT est lancée, proposant des améliorations significatives en matière de compréhension et de génération de texte."
+    "description": "La nouvelle génération de modèles GPT est lancée, proposant des améliorations significatives en matière de compréhension et de génération de texte.",
+    "image": "https://data.ictjournal.ch/styles/np8_full/s3/media/2023/03/15/adobestock_558672396_editorial_use_only_preview_2.jpg?itok=c3pAzWMJ"
   },
   {
     "title": "Progrès majeurs en informatique quantique",
     "date": "2024",
-    "description": "Plusieurs entreprises annoncent des avancées notables dans le domaine du calcul quantique, laissant entrevoir de nouvelles perspectives de puissance de calcul."
+    "description": "Plusieurs entreprises annoncent des avancées notables dans le domaine du calcul quantique, laissant entrevoir de nouvelles perspectives de puissance de calcul.",
+    "image": "https://focus.courrierinternational.com/2024/12/09/0/0/3840/2160/1280/0/60/0/1040083_afp-36q22tx.jpg"
   }
 ]

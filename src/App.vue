@@ -61,19 +61,18 @@ export default {
       />
     </div>-->
   
-    <div class="absolute top-0 flex justify-center w-screen">
-    <h1 class="text-center text-2xl font-bold mb-4">Timeline Historique</h1>
-    <div class="p-4">
-      <button
+    <div class="absolute top-0 w-screen flex">
+      <div class="p-4 w-48">
+        <button
         @click="modalOpen = true"
         class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded"
-      >
+        >
         Add New Item
       </button>
       <AddModal :isOpen="modalOpen" @close="handleCloseModal" @createStory="CreateStory" />
     </div>
-    
-  </div><!-- DEBUG buttons-->
+    <h1 class="text-center w-full text-2xl font-bold mt-4">Timeline Historique</h1>
+  </div>
 </template>
 
 <style></style>

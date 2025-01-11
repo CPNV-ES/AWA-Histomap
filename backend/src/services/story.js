@@ -12,12 +12,11 @@ import DbManager from '../dbManager.js';
 
 
 class Story {
-  //Get all the stories
+
   static async getStories(req, res) {
     try {
       const stories = await DbManager.getStories();
       res.status(200).json(stories);
-      //return stories;
     } catch (error) {
       res.status(500).json({error: 'Unable to get stories'});
       console.log(error);
@@ -46,6 +45,7 @@ class Story {
     try {
       const result = await DbManager.deleteStory(title);
       res.status(200).json({message: 'Story ' + title + ' deleted', succes: true, deletedCount: result});
+      console.log('Story ' + title + ' deleted');
     } catch (error) {
       console.log(error);
       return res.status(500).json({error: 'Unable to delete story'});

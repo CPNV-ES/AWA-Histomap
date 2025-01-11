@@ -12,7 +12,7 @@
     </div>
   </div>
 
-  <Card :img_src=img_src :title= title :description=description />
+  <Card :img_src=img_src :title= title :description=description :margin=margin />
 
 </template>
 
@@ -34,6 +34,10 @@ defineProps({
   },
   year: {
     type: String,
+    required: true,
+  },
+  margin: {
+    type: Number,
     required: true,
   },
 });

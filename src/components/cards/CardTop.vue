@@ -1,5 +1,5 @@
 <template>
-  <Card :img_src=img_src :title= title :description=description />
+  <Card :img_src=img_src :title= title :description=description :margin=margin />
 
   <div class="bottom-0 relative rotate flex justify-center h-1 mt-[8rem] ">
     <div>
@@ -33,6 +33,10 @@ defineProps({
   },
   year: {
     type: String,
+    required: true,
+  },
+  margin: {
+    type: Number,
     required: true,
   },
 });

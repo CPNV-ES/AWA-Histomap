@@ -12,6 +12,7 @@
                   :title="cardtop.title"
                   :description="cardtop.description"
                   :year="cardtop.year"
+                  :margin="marginCards"
                 />
               </div>
             </div>
@@ -57,7 +58,7 @@
       </div>
       <!-- bottom cards -->
     </div>
-    <div class="absolute pr-[600px] pt-16 top-0 flex justify-center w-screen">
+    <div class="absolute pr-[600px] pt-16 flex justify-center w-screen">
     <button @click="push">Ajouter</button>
     </div>
   </div>
@@ -74,8 +75,8 @@ const cardsBottom = ref([]);
 const lineWidth = ref(getLineWidth());
 const progressLineWidth = ref(0);
 const containerPadding = 160; // padding of the container left+right
-const cardWidth = 688; // width of each card with margin, to be adjusted
-const marginCards = 144; // margin of each card, to be adjusted
+const marginCards = 80; // margin of each card, to be adjusted
+const cardWidth = 398 + marginCards*2; // width of each card with margin, to be adjusted
 const flip = ref(false);
 
 function pushTop() {

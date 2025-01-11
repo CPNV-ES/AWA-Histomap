@@ -8,7 +8,7 @@
             <div class="flex justify-center items-center mr-[80px]">
               <div v-for="(cardtop, index) in cardsTop" :key="'top-' + index">
                 <CardTop
-                  :img_src="cardtop.img_src"
+                  :image="cardtop.image"
                   :title="cardtop.title"
                   :description="cardtop.description"
                   :year="cardtop.year"
@@ -44,7 +44,7 @@
               <div v-for="(cardbottom, index) in cardsBottom" :key="'bottom-' + index">
                 <div class="pt-[4rem]">
                   <CardBottom
-                    :img_src="cardbottom.img_src"
+                    :image="cardbottom.image"
                     :title="cardbottom.title"
                     :description="cardbottom.description"
                     :year="cardbottom.year"
@@ -81,7 +81,7 @@ const lineWidth = ref(getLineWidth());
 
 function pushTop() {
   cardsTop.value.push({
-    img_src: "https://esi.uclm.es/assets/uploads/2023/03/0_gpt4.jpeg",
+    image: "https://esi.uclm.es/assets/uploads/2023/03/0_gpt4.jpeg",
     title: "Nouvelle Carte du Haut",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
     year: "2023",
@@ -91,7 +91,7 @@ function pushTop() {
 
 function pushBottom() {
   cardsBottom.value.push({
-    img_src: "https://esi.uclm.es/assets/uploads/2023/03/0_gpt4.jpeg",
+    image: "https://esi.uclm.es/assets/uploads/2023/03/0_gpt4.jpeg",
     title: "Nouvelle Carte du Bas",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     year: "2023",
@@ -113,7 +113,11 @@ function push() {
 function updateLineWidth(correction = 0) {
   const totalCardsWidth = Math.max(cardsTop.value.length, cardsBottom.value.length) * cardWidth;
   const screenWidth = window.innerWidth - containerPadding;
-  lineWidth.value = Math.max(screenWidth, totalCardsWidth)+correction/2;
+  if (screenWidth < totalCardsWidth) {
+    lineWidth.value = totalCardsWidth + correction / 2;
+  } else {
+    lineWidth.value = screenWidth;
+  }
 }
 
 // Get the line width

@@ -5,6 +5,7 @@ export default {
     title: { type: String, required: true },
     description: { type: String, required: true },
     date: { type: String, required: true },
+    image: { type: String, required: true },
   },
   data() {
     return {
@@ -27,9 +28,12 @@ export default {
   methods: {
     flipCard() {
       this.isFlipped = !this.isFlipped
-      setTimeout(() => {
-        this.isHidden = !this.isHidden
-      }, this.isHidden ? 355 : 341)
+      setTimeout(
+        () => {
+          this.isHidden = !this.isHidden
+        },
+        this.isHidden ? 355 : 341,
+      )
     },
     updateHeight() {
       // Récupérer les éléments via $refs
@@ -41,8 +45,8 @@ export default {
       if (back) {
         this.cardHeight = Math.max(this.cardHeight, back.scrollHeight)
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -60,14 +64,14 @@ export default {
           ref="frontSide"
           :class="{ hidden: isHidden }"
         >
-          <img
-            src="https://esi.uclm.es/assets/uploads/2023/03/0_gpt4.jpeg"
-            alt="OpenAI"
-            class="w-full h-auto rounded-t-lg"
-          />
+          <img :src="image"  alt="cover" class="w-full h-auto rounded-t-lg" />
           <div class="p-6">
-            <p class="text-2xl font-bold text-black dark:text-white dark:hover:text-slate-300">{{ date }}</p>
-            <p class="text-sm font-bold text-gray-800 hover:text-gray-700 mb-2 dark:text-white dark:hover:text-slate-300">
+            <p class="text-2xl font-bold text-black dark:text-white dark:hover:text-slate-300">
+              {{ date }}
+            </p>
+            <p
+              class="text-sm font-bold text-gray-800 hover:text-gray-700 mb-2 dark:text-white dark:hover:text-slate-300"
+            >
               {{ title }}
             </p>
             <div>
@@ -88,12 +92,18 @@ export default {
         >
           <div
             class="absolute inset-0 bg-cover bg-center"
-            style="background-image: url('https://esi.uclm.es/assets/uploads/2023/03/0_gpt4.jpeg'); filter: blur(4px);"
+            :style="{ backgroundImage: `url(${image})`, filter: 'blur(4px)' }"
           ></div>
           <div class="relative z-10 text-center h-full">
             <div class="relative h-full bg-black bg-opacity-50 rounded-lg p-6 shadow-lg">
-              <p class="text-xl font-bold text-white mb-4 dark:text-white dark:hover:text-slate-300">{{ title }}</p>
-              <p class="text-sm text-white mb-4 dark:text-white dark:hover:text-slate-300">{{ description }}</p>
+              <p
+                class="text-xl font-bold text-white mb-4 dark:text-white dark:hover:text-slate-300"
+              >
+                {{ title }}
+              </p>
+              <p class="text-sm text-white mb-4 dark:text-white dark:hover:text-slate-300">
+                {{ description }}
+              </p>
               <button
                 @click="flipCard"
                 class="inline-flex items-center mt-4 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-500 shadow-md hover:shadow-lg"

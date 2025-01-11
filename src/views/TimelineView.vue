@@ -72,12 +72,12 @@ import CardBottom from "@/components/cards/CardBottom.vue";
 
 const cardsTop = ref([]);
 const cardsBottom = ref([]);
-const lineWidth = ref(getLineWidth());
 const progressLineWidth = ref(0);
 const containerPadding = 160; // padding of the container left+right
 const marginCards = 80; // margin of each card, to be adjusted
 const cardWidth = 398 + marginCards*2; // width of each card with margin, to be adjusted
 const flip = ref(false);
+const lineWidth = ref(getLineWidth());
 
 function pushTop() {
   cardsTop.value.push({

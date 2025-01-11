@@ -1,6 +1,8 @@
 <script>
-import AddModal from '@/components/AddModal.vue'
+
 import Card from '@/components/card.vue'
+import Timelineview from '@/views/TimelineView.vue'
+import AddModal from '@/components/AddModal.vue'
 
 //const stories = []; // Liste des histoires
 
@@ -8,7 +10,8 @@ export default {
   name: 'App',
   components: {
     AddModal,
-    Card
+    Card,
+    Timelineview,
   },
   methods: {
     CreateStory(newStory) {
@@ -43,7 +46,22 @@ export default {
 </script>
 
 <template>
-  <div>
+  
+  
+    <Timelineview />
+
+    <!-- Liste des histoires affichées avec le composant Card 
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <Card
+        v-for="story in stories"
+        :key="story._id"
+        :date="story.date"
+        :title="story.title"
+        :description="story.description"
+      />
+    </div>-->
+  
+    <div class="absolute top-0 flex justify-center w-screen">
     <h1 class="text-center text-2xl font-bold mb-4">Timeline Historique</h1>
     <div class="p-4">
       <button
@@ -54,18 +72,8 @@ export default {
       </button>
       <AddModal :isOpen="modalOpen" @close="handleCloseModal" @createStory="CreateStory" />
     </div>
-
-    <!-- Liste des histoires affichées avec le composant Card -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <Card
-        v-for="story in stories"
-        :key="story._id"
-        :date="story.date"
-        :title="story.title"
-        :description="story.description"
-      />
-    </div>
-  </div>
+    
+  </div><!-- DEBUG buttons-->
 </template>
 
 <style></style>

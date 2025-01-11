@@ -12,12 +12,14 @@
     </div>
   </div>
 
-  <Card img_src="/cat.png" title="Titre de l'image" content="lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum "/>
+  <!--<CardOld img_src="/cat.png" title="Titre de l'image" content="lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum "/>-->
+  <Card img_src="/cat.png" title="Titre de l'image" description="lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum "/>
 
 </template>
 
 <script setup>
-import Card from "@/components/cards/Card.vue";
+import CardOld from "@/components/cards/CardOld.vue";
+import Card from "@/components/card.vue";
 
 defineProps({
   img_src: {
@@ -28,7 +30,7 @@ defineProps({
     type: String,
     required: true,
   },
-  content: {
+  description: {
     type: String,
     required: true,
   },

@@ -5,6 +5,7 @@ export default {
     title: { type: String, required: true },
     description: { type: String, required: true },
     date: { type: String, required: true },
+    margin: { type: Number, default: 144 },
   },
   data() {
     return {
@@ -20,7 +21,7 @@ export default {
     cardStyle() {
       return {
         height: `${this.cardHeight}px`,
-        minHeight: '24rem',
+        minHeight: '18rem',
       }
     }
   },
@@ -47,16 +48,19 @@ export default {
 </script>
 
 <template>
-  <div class="flex items-center justify-center min-h-screen bg-gray-100">
-    <div class="perspective">
+  <div
+        class="h-[220px] w-[400px] "
+        :style="{ marginLeft: margin + 'px', marginRight: margin + 'px' }"
+      >
+    <div class="perspective h-[220px] w-[400px]">
       <div
-        class="relative w-64 h-96 transition-all duration-[1000ms] transform-gpu"
+        class="relative transition-all duration-[1000ms] transform-gpu"
         :class="{ 'rotate-y-180': isFlipped }"
         :style="cardStyle"
       >
         <!-- Front Side -->
         <div
-          class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+          class="bg-white border h-full border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
           ref="frontSide"
           :class="{ hidden: isHidden }"
         >
@@ -83,7 +87,7 @@ export default {
 
         <!-- Back Side -->
         <div
-          class="backface-hidden absolute rotate-y-180 overflow-hidden max-w-sm h-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+          class="backface-hidden absolute rotate-y-180 h-full overflow-hidden bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
           ref="backSide"
         >
           <div

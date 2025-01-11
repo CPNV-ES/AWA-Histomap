@@ -57,10 +57,11 @@
       </div>
       <!-- bottom cards -->
     </div>
-  </div>
-  <div class="absolute top-0 flex justify-center w-screen">
+    <div class="absolute pr-96 pt-48 top-0 flex justify-center w-screen">
     <button @click="push">Ajouter</button>
-  </div><!-- DEBUG buttons-->
+    </div>
+  </div>
+
 </template>
 
 <script setup>

@@ -1,5 +1,5 @@
 <template>
-  <Card class="bg-yellow-100" img_src="/cat.png" title="Titre de l'image" content="lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum "/>
+  <Card class="" img_src="/cat.png" title="Titre de l'image" description="lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum "/>
 
   <div class="bottom-0 relative rotate flex justify-center h-1 pt-12 ">
     <div>
@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import Card from "@/components/cards/Card.vue";
+import Card from "@/components/card.vue";
 
 defineProps({
   img_src: {
@@ -27,7 +27,7 @@ defineProps({
     type: String,
     required: true,
   },
-  content: {
+  description: {
     type: String,
     required: true,
   },

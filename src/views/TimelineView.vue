@@ -58,7 +58,7 @@
       </div>
       <!-- bottom cards -->
     </div>
-    <div class="absolute text-left ml-8 pt-16 flex w-screen">
+    <div class="absolute text-left ml-12 pt-16 flex w-screen">
     <button @click="push">Ajouter (DEBUG)</button>
     </div>
   </div>
@@ -99,6 +99,7 @@ function pushBottom() {
   updateLineWidth(cardWidth);
 }
 
+// Add one card to the top and next to the bottom
 function push() {
   flip.value = !flip.value;
   if (flip.value) {
@@ -107,18 +108,20 @@ function push() {
     pushBottom();
   }
 }
-// Calcul initial et mises à jour
+
+// Initialize the line width
 function updateLineWidth(correction = 0) {
   const totalCardsWidth = Math.max(cardsTop.value.length, cardsBottom.value.length) * cardWidth;
   const screenWidth = window.innerWidth - containerPadding;
   lineWidth.value = Math.max(screenWidth, totalCardsWidth)+correction/2;
 }
 
-
+// Get the line width
 function getLineWidth() {
   return Math.max(window.innerWidth - containerPadding, 0);
 }
 
+// Update the line width on scroll
 function updateProgessLineWidth() {
   const scrollContainer = document.querySelector(".sticky");
 
@@ -126,12 +129,14 @@ function updateProgessLineWidth() {
   let targetWidth = 0;
   let isAnimating = false;
 
+  // Smoothly update the line width on scroll to have the progress line follow the scroll with "inertia"
   function smoothUpdate() {
     const currentWidth = progressLineWidth.value;
     const delta = targetWidth - currentWidth;
 
     progressLineWidth.value += delta * 0.1;
 
+    // limit the animation to not have a teleport effect
     if (Math.abs(delta) > 0.5) {
       requestAnimationFrame(smoothUpdate);
     } else {
@@ -139,7 +144,7 @@ function updateProgessLineWidth() {
     }
   }
 
-
+  // Update the target width on scroll
   scrollContainer.addEventListener("scroll", () => {
     targetWidth = halfWidth - 32 + scrollContainer.scrollLeft;
     halfWidth = window.innerWidth / 2 - containerPadding / 2;

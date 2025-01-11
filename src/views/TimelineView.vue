@@ -58,8 +58,8 @@
       </div>
       <!-- bottom cards -->
     </div>
-    <div class="absolute pr-[600px] pt-16 flex justify-center w-screen">
-    <button @click="push">Ajouter</button>
+    <div class="absolute text-left ml-8 pt-16 flex w-screen">
+    <button @click="push">Ajouter (DEBUG)</button>
     </div>
   </div>
 

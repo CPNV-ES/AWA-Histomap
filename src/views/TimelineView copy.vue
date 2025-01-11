@@ -72,18 +72,18 @@ import CardBottom from "@/components/cards/CardBottom.vue";
 
 const cardsTop = ref([]);
 const cardsBottom = ref([]);
-const progressLineWidth = ref(0);
-const containerPadding = 160; // padding of the container left+right
-const marginCards = 80; // margin of each card, to be adjusted
-const cardWidth = 398 + marginCards*2; // width of each card with margin, to be adjusted
-const flip = ref(false);
 const lineWidth = ref(getLineWidth());
+const progressLineWidth = ref(0);
+const containerPadding  = 160; // padding of the container left+right
+const cardWidth = 688; // width of each card with margin, to be adjusted
+const marginCards = 144; // margin of each card, to be adjusted
+const flip = ref(false);
 
 function pushTop() {
   cardsTop.value.push({
-    img_src: "https://esi.uclm.es/assets/uploads/2023/03/0_gpt4.jpeg",
+    img_src: "/cat.png",
     title: "Nouvelle Carte du Haut",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     year: "2023",
   });
   updateLineWidth();
@@ -91,15 +91,14 @@ function pushTop() {
 
 function pushBottom() {
   cardsBottom.value.push({
-    img_src: "https://esi.uclm.es/assets/uploads/2023/03/0_gpt4.jpeg",
+    img_src: "/cat.png",
     title: "Nouvelle Carte du Bas",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     year: "2023",
   });
   updateLineWidth(cardWidth);
 }
 
-// Add one card to the top and next to the bottom
 function push() {
   flip.value = !flip.value;
   if (flip.value) {
@@ -108,20 +107,18 @@ function push() {
     pushBottom();
   }
 }
-
-// Initialize the line width
+// Calcul initial et mises à jour
 function updateLineWidth(correction = 0) {
   const totalCardsWidth = Math.max(cardsTop.value.length, cardsBottom.value.length) * cardWidth;
   const screenWidth = window.innerWidth - containerPadding;
   lineWidth.value = Math.max(screenWidth, totalCardsWidth)+correction/2;
 }
 
-// Get the line width
+
 function getLineWidth() {
   return Math.max(window.innerWidth - containerPadding, 0);
 }
 
-// Update the line width on scroll
 function updateProgessLineWidth() {
   const scrollContainer = document.querySelector(".sticky");
 
@@ -129,14 +126,12 @@ function updateProgessLineWidth() {
   let targetWidth = 0;
   let isAnimating = false;
 
-  // Smoothly update the line width on scroll to have the progress line follow the scroll with "inertia"
   function smoothUpdate() {
     const currentWidth = progressLineWidth.value;
     const delta = targetWidth - currentWidth;
 
     progressLineWidth.value += delta * 0.1;
 
-    // limit the animation to not have a teleport effect
     if (Math.abs(delta) > 0.5) {
       requestAnimationFrame(smoothUpdate);
     } else {
@@ -144,9 +139,8 @@ function updateProgessLineWidth() {
     }
   }
 
-  // Update the target width on scroll
+
   scrollContainer.addEventListener("scroll", () => {
-    console.log("scrollContainer.scrollLeft");
     targetWidth = halfWidth - 32 + scrollContainer.scrollLeft;
     halfWidth = window.innerWidth / 2 - containerPadding / 2;
 
@@ -157,22 +151,9 @@ function updateProgessLineWidth() {
   });
 }
 
-function loadStories() {
-  //loop over the stories and push them to the cards
-  for (let i = 0; i < stories.length; i++) {
-    if (i % 2 === 0) {
-      cardsTop.value.push(stories[i]);
-    } else {
-      cardsBottom.value.push(stories[i]);
-    }
-  }
-}
 window.addEventListener("resize", updateLineWidth);
 
 onMounted(() => {
   updateProgessLineWidth();
-  loadStories();
 });
-
-
 </script>

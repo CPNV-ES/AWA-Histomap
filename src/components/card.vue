@@ -6,6 +6,7 @@ export default {
     description: { type: String, required: true },
     date: { type: String, required: true },
     margin: { type: Number, default: 144 },
+    year: { type: String, required: true },
     img_src: { type: String, required: true, default: 'https://esi.uclm.es/assets/uploads/2023/03/0_gpt4.jpeg' },
   },
   data() {

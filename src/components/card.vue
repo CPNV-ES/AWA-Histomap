@@ -66,8 +66,8 @@ export default {
             class="w-full h-auto rounded-t-lg"
           />
           <div class="p-6">
-            <p class="text-2xl font-bold text-black">{{ date }}</p>
-            <p class="text-sm font-bold text-gray-800 hover:text-gray-700 mb-2">
+            <p class="text-2xl font-bold text-black dark:text-white">{{ date }}</p>
+            <p class="text-sm font-bold text-gray-800 hover:text-gray-700 mb-2 dark:text-white">
               {{ title }}
             </p>
             <div>
@@ -92,8 +92,8 @@ export default {
           ></div>
           <div class="relative z-10 text-center h-full">
             <div class="relative h-full bg-black bg-opacity-50 rounded-lg p-6 shadow-lg">
-              <p class="text-xl font-bold text-white mb-4">{{ title }}</p>
-              <p class="text-sm text-white mb-4">{{ description }}</p>
+              <p class="text-xl font-bold text-white mb-4 dark:text-white">{{ title }}</p>
+              <p class="text-sm text-white mb-4 dark:text-white">{{ description }}</p>
               <button
                 @click="flipCard"
                 class="inline-flex items-center mt-4 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-500 shadow-md hover:shadow-lg"

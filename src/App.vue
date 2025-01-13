@@ -1,6 +1,5 @@
 <script>
 
-import Card from '@/components/card.vue'
 import Timelineview from '@/views/TimelineView.vue'
 import AddModal from '@/components/AddModal.vue'
 
@@ -10,7 +9,6 @@ export default {
   name: 'App',
   components: {
     AddModal,
-    Card,
     Timelineview,
   },
   methods: {
@@ -51,13 +49,13 @@ export default {
       <div class="p-4 w-48">
         <button
         @click="modalOpen = true"
-        class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded"
+        class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded"
         >
-        Ajouter un événement
+        Ajouter une histoire
       </button>
       <AddModal :isOpen="modalOpen" @close="handleCloseModal" @createStory="CreateStory" />
     </div>
-    <h1 class="text-center w-full text-2xl font-bold mt-4">Timeline Historique</h1>
+    <h1 class="text-center font-serif w-full text-4xl font-bold mt-4">Timeline Historique</h1>
 
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div v-if="isOpen" class="z-50 fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
     <div class="bg-white p-6 rounded-lg shadow-lg w-96">
-      <h2 class="text-xl font-semibold mb-4">Ajouter une story</h2>
+      <h2 class="text-xl font-semibold mb-4">Ajouter une histoire</h2>
       <form @submit.prevent="onSubmit">
         <div class="mb-4">
           <label for="title" class="block text-sm font-medium text-gray-700">Titre</label>
@@ -27,6 +27,15 @@
           <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
           <textarea
             v-model="formData.description"
+            id="description"
+            required
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm sm:text-sm"
+          ></textarea>
+        </div>
+        <div class="mb-4">
+          <label for="image" class="block text-sm font-medium text-gray-700">Lien de l'image</label>
+          <textarea
+            v-model="formData.image"
             id="description"
             required
             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm sm:text-sm"
@@ -61,7 +70,8 @@ export default {
       formData: {
         title: '',
         date: '',
-        description: ''
+        description: '',
+        image: ''
       }
     }
   },
@@ -96,7 +106,7 @@ export default {
 
         this.$emit('createStory', newStory)
 
-        this.formData = { title: '', date: '', description: '' }
+        this.formData = { title: '', date: '', description: '', image: '' }
 
         this.closeModal()
       } catch (error) {

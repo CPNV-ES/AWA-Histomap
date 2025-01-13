@@ -24,12 +24,12 @@ class Story {
   }
 
   static async addStory(req, res) {
-    const {date, title, description} = req.body;
-    if (!date || !title || !description) {
-      return res.status(400).json({error: 'Date, title and description are required'});
+    const {date, title, description, image} = req.body;
+    if (!date || !title || !description || !image) {
+      return res.status(400).json({error: 'La date, le titre, la description et le lien vers l\'image sont obligatoires.'});
     }
     try {
-      await DbManager.addStory({date, title, description});
+      await DbManager.addStory({date, title, description, image});
       return res.status(201).json({message: 'Story added'});
     } catch (error) {
       console.log(error);

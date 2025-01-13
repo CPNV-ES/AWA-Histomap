@@ -59,7 +59,7 @@
       <!-- bottom cards -->
     </div>
     <div class="absolute text-left ml-12 pt-16 flex w-screen">
-    <button @click="push">Ajouter (DEBUG)</button>
+    <button class="text-white" @click="push">Ajouter (DEBUG)</button>
     </div>
   </div>
 

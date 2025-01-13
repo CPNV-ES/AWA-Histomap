@@ -1,19 +1,24 @@
 <script>
 export default {
-  name: 'HistoryCard',
+  name: 'Card',
   props: {
     title: { type: String, required: true },
     description: { type: String, required: true },
     date: { type: String, required: true },
     margin: { type: Number, default: 144 },
     year: { type: String, required: true },
-    img_src: { type: String, required: true, default: 'https://esi.uclm.es/assets/uploads/2023/03/0_gpt4.jpeg' },
+    image: {
+      type: String,
+      required: true,
+      default: 'https://esi.uclm.es/assets/uploads/2023/03/0_gpt4.jpeg',
+    },
   },
   data() {
     return {
       isFlipped: false,
       isHidden: false,
       cardHeight: 0,
+      isDeleting: false, // Pour gérer l'état de suppression
     }
   },
   mounted() {
@@ -25,14 +30,17 @@ export default {
         height: `${this.cardHeight}px`,
         minHeight: '18rem',
       }
-    }
+    },
   },
   methods: {
     flipCard() {
       this.isFlipped = !this.isFlipped
-      setTimeout(() => {
-        this.isHidden = !this.isHidden
-      }, this.isHidden ? 355 : 341)
+      setTimeout(
+        () => {
+          this.isHidden = !this.isHidden
+        },
+        this.isHidden ? 355 : 341,
+      )
     },
     updateHeight() {
       // Récupérer les éléments via $refs
@@ -44,16 +52,47 @@ export default {
       if (back) {
         this.cardHeight = Math.max(this.cardHeight, back.scrollHeight)
       }
-    }
-  }
+    },
+    async confirmDelete() {
+      const confirmed = confirm(`Êtes-vous sûr de vouloir supprimer "${this.title}" ?`)
+      if (confirmed) {
+        await this.deleteStory()
+      }
+    },
+    async deleteStory() {
+      this.isDeleting = true
+      try {
+        // Encodez le titre pour l'utiliser dans l'URL
+        const encodedTitle = encodeURIComponent(this.title)
+        const response = await fetch(`http://localhost:3000/stories/${encodedTitle}`, {
+          method: 'DELETE',
+        })
+
+        if (!response.ok) {
+          throw new Error(`Erreur lors de la suppression: ${response.statusText}`)
+        }
+
+        // Emission de l'événement pour informer le parent
+        this.$emit('storyDeleted', this.title)
+
+        alert(`"${this.title}" a été supprimé avec succès. La page va se recharger.`)
+        window.location.reload()
+      } catch (error) {
+        console.error('Erreur lors de la suppression:', error)
+        alert(`Erreur lors de la suppression de "${this.title}". Veuillez réessayer.`)
+      } finally {
+        this.isDeleting = false
+      }
+    },
+  },
 }
 </script>
 
 <template>
   <div
-        class="h-[220px] w-[400px] "
-        :style="{ marginLeft: margin + 'px', marginRight: margin + 'px' }"
-      >
+    class="h-[220px] w-[400px] hover:scale-105 transition-transform duration-300 ease-in-out"
+    :style="{ marginLeft: margin + 'px', marginRight: margin + 'px' }"
+  >
     <div class="perspective h-[220px] w-[400px]">
       <div
         class="relative transition-all duration-[1000ms] transform-gpu"
@@ -66,14 +105,15 @@ export default {
           ref="frontSide"
           :class="{ hidden: isHidden }"
         >
-          <img
-            :src=" img_src "
-            alt="OpenAI"
-            class="w-full h-auto rounded-t-lg"
-          />
+          <img :src="image" alt="Image Story" class="w-full h-52 rounded-t-lg object-cover" />
+
           <div class="p-6">
-            <p class="text-2xl font-bold text-black dark:text-white dark:hover:text-slate-300">{{ date }}</p>
-            <p class="text-sm font-bold text-gray-800 hover:text-gray-700 mb-2 dark:text-white dark:hover:text-slate-300">
+            <p class="text-2xl font-bold text-black dark:text-white dark:hover:text-slate-300">
+              {{ date }}
+            </p>
+            <p
+              class="text-sm font-bold text-gray-800 hover:text-gray-700 mb-2 dark:text-white dark:hover:text-slate-300"
+            >
               {{ title }}
             </p>
             <div>
@@ -81,7 +121,7 @@ export default {
                 @click="flipCard"
                 class="inline-flex items-center mt-4 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-500 shadow-md hover:shadow-lg"
               >
-                Voir l'arrière
+                Détails
               </button>
             </div>
           </div>
@@ -94,33 +134,66 @@ export default {
         >
           <div
             class="absolute inset-0 bg-cover bg-center"
-            style="background-image: url('https://esi.uclm.es/assets/uploads/2023/03/0_gpt4.jpeg'); filter: blur(4px);"
+            :style="{ backgroundImage: `url(${image})`, filter: 'blur(4px)' }"
           ></div>
           <div class="relative z-10 text-center h-full">
-            <div class="relative h-full bg-black bg-opacity-50 rounded-lg p-6 shadow-lg">
-              <p class="text-xl font-bold text-white mb-4 dark:text-white dark:hover:text-slate-300">{{ title }}</p>
-              <p class="text-sm text-white mb-4 dark:text-white dark:hover:text-slate-300">{{ description }}</p>
-              <button
-                @click="flipCard"
-                class="inline-flex items-center mt-4 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-500 shadow-md hover:shadow-lg"
+            <div
+              class="relative h-full bg-black bg-opacity-50 rounded-lg p-6 shadow-lg flex flex-col justify-center items-center"
+            >
+              <p
+                class="text-xl font-bold text-white mb-4 dark:text-white dark:hover:text-slate-300"
               >
-                Retour
-                <svg
-                  class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 14 10"
+                {{ title }}
+              </p>
+              <p class="text-sm text-white mb-4 dark:text-white dark:hover:text-slate-300">
+                {{ description }}
+              </p>
+              <div class="flex space-x-4">
+                <button
+                  @click="flipCard"
+                  class="inline-flex items-center mt-4 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-500 shadow-md hover:shadow-lg"
                 >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M1 5h12m0 0L9 1m4 4L9 9"
-                  />
-                </svg>
-              </button>
+                  Retour
+                  <svg
+                    class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 10"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M1 5h12m0 0L9 1m4 4L9 9"
+                    />
+                  </svg>
+                </button>
+
+                <!-- Bouton de Suppression -->
+                <button
+                  @click="confirmDelete"
+                  class="inline-flex items-center mt-4 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-500 shadow-md hover:shadow-lg"
+                >
+                  Supprimer
+                  <svg
+                    class="w-4 h-4 ms-2"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 14"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M1 1l12 12M13 1L1 13"
+                    />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>

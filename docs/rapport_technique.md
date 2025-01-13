@@ -179,3 +179,7 @@ Version : 6.11.0
 - Permet une grande flexibilité sur les schémas des données, adaptée à un faible volume d'écriture et l'absence de relations complexes.
 - Intégration facilitée avec Node.js grâce à Mongoose.
 
+## Code fourni part GPT
+Le code fourni concerne principalement les modification entre les différentes version de Vue.
+Le composant `Card` et `addModal` ont été réaliser avec **l'option API** qui est l'ancienne version de Vue et les composants `TimeLine`, `CardBottom`, `CardTop` avec la **composition API**.
+Lien utilisé pour la comptréhension des différences entre la composition API et l'options API. [Vue Options API vs Composition API](https://vueschool.io/articles/vuejs-tutorials/options-api-vs-composition-api/)

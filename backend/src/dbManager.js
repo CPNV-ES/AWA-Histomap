@@ -30,9 +30,9 @@ class DbManager {
     return await this.db.collection('history').find().sort({ createdAt: -1 }).toArray()
   }
 
-  static async addStory({ date, title, description }) {
+  static async addStory({ date, title, description, image }) {
     await this.connect('HistoryAWA')
-    return await this.db.collection('history').insertOne({ date, title, description })
+    return await this.db.collection('history').insertOne({ date, title, description, image })
   }
 
   static async deleteStory(title) {

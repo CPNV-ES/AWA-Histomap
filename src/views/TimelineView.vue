@@ -8,10 +8,10 @@
             <div class="flex justify-center items-center mr-[80px]">
               <div v-for="(cardtop, index) in cardsTop" :key="'top-' + index">
                 <CardTop
-                  :img_src="cardtop.img_src"
+                  :image="cardtop.image"
                   :title="cardtop.title"
                   :description="cardtop.description"
-                  :year="cardtop.year"
+                  :year="cardtop.date"
                   :margin="marginCards"
                 />
               </div>
@@ -44,10 +44,10 @@
               <div v-for="(cardbottom, index) in cardsBottom" :key="'bottom-' + index">
                 <div class="pt-[4rem]">
                   <CardBottom
-                    :img_src="cardbottom.img_src"
+                    :image="cardbottom.image"
                     :title="cardbottom.title"
                     :description="cardbottom.description"
-                    :year="cardbottom.year"
+                    :year="cardbottom.date"
                     :margin="marginCards"
                   />
                 </div>
@@ -59,47 +59,59 @@
       <!-- bottom cards -->
     </div>
     <div class="absolute text-left ml-12 pt-16 flex w-screen">
-    <button @click="push">Ajouter (DEBUG)</button>
+    <button class="text-white" @click="push">Ajouter (DEBUG)</button>
     </div>
   </div>
 
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import CardTop from "@/components/cards/CardTop.vue";
 import CardBottom from "@/components/cards/CardBottom.vue";
 
+const { stories } = defineProps({
+  stories: {
+    type: Array,
+    required: true,
+  },
+});
+
+// Initialisation des références
 const cardsTop = ref([]);
 const cardsBottom = ref([]);
 const progressLineWidth = ref(0);
-const containerPadding = 160; // padding of the container left+right
-const marginCards = 80; // margin of each card, to be adjusted
-const cardWidth = 398 + marginCards*2; // width of each card with margin, to be adjusted
+const containerPadding = 160; // padding de la container left + right
+const marginCards = 80; // marge de chaque carte
+const cardWidth = 398 + marginCards * 2; // largeur de chaque carte avec marge
 const flip = ref(false);
 const lineWidth = ref(getLineWidth());
 
+// Fonction pour ajouter des cartes en haut
 function pushTop() {
   cardsTop.value.push({
-    img_src: "https://esi.uclm.es/assets/uploads/2023/03/0_gpt4.jpeg",
+    image: "https://esi.uclm.es/assets/uploads/2023/03/0_gpt4.jpeg",
     title: "Nouvelle Carte du Haut",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     year: "2023",
   });
   updateLineWidth();
 }
 
+// Fonction pour ajouter des cartes en bas
 function pushBottom() {
   cardsBottom.value.push({
-    img_src: "https://esi.uclm.es/assets/uploads/2023/03/0_gpt4.jpeg",
+    image: "https://esi.uclm.es/assets/uploads/2023/03/0_gpt4.jpeg",
     title: "Nouvelle Carte du Bas",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     year: "2023",
   });
   updateLineWidth(cardWidth);
 }
 
-// Add one card to the top and next to the bottom
+// Fonction pour alterner l'ajout de cartes
 function push() {
   flip.value = !flip.value;
   if (flip.value) {
@@ -109,19 +121,24 @@ function push() {
   }
 }
 
-// Initialize the line width
+// Initialiser la largeur de la ligne
 function updateLineWidth(correction = 0) {
-  const totalCardsWidth = Math.max(cardsTop.value.length, cardsBottom.value.length) * cardWidth;
+  const totalCardsWidth =
+    Math.max(cardsTop.value.length, cardsBottom.value.length) * cardWidth;
   const screenWidth = window.innerWidth - containerPadding;
-  lineWidth.value = Math.max(screenWidth, totalCardsWidth)+correction/2;
+  if (screenWidth < totalCardsWidth) {
+    lineWidth.value = totalCardsWidth + correction / 2;
+  } else {
+    lineWidth.value = screenWidth;
+  }
 }
 
-// Get the line width
+// Obtenir la largeur de la ligne
 function getLineWidth() {
   return Math.max(window.innerWidth - containerPadding, 0);
 }
 
-// Update the line width on scroll
+// Mettre à jour la largeur de la ligne de progression lors du scroll
 function updateProgessLineWidth() {
   const scrollContainer = document.querySelector(".sticky");
 
@@ -129,14 +146,13 @@ function updateProgessLineWidth() {
   let targetWidth = 0;
   let isAnimating = false;
 
-  // Smoothly update the line width on scroll to have the progress line follow the scroll with "inertia"
+  // Mettre à jour la largeur de la ligne avec une animation fluide
   function smoothUpdate() {
     const currentWidth = progressLineWidth.value;
     const delta = targetWidth - currentWidth;
 
     progressLineWidth.value += delta * 0.1;
 
-    // limit the animation to not have a teleport effect
     if (Math.abs(delta) > 0.5) {
       requestAnimationFrame(smoothUpdate);
     } else {
@@ -144,7 +160,7 @@ function updateProgessLineWidth() {
     }
   }
 
-  // Update the target width on scroll
+  // Écouter l'événement de scroll
   scrollContainer.addEventListener("scroll", () => {
     console.log("scrollContainer.scrollLeft");
     targetWidth = halfWidth - 32 + scrollContainer.scrollLeft;
@@ -157,22 +173,51 @@ function updateProgessLineWidth() {
   });
 }
 
+// Charger les stories passées en props
 function loadStories() {
-  //loop over the stories and push them to the cards
-  for (let i = 0; i < stories.length; i++) {
+  if (!stories || stories.length === 0) {
+    console.warn("No stories provided");
+    return;
+  }
+
+  // Trier les stories par date ascendante (du plus ancien au plus récent)
+  const sortedStories = [...stories].sort((a, b) => {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+    return dateA - dateB; // Tri croissant
+  });
+
+  // Distribuer les stories triées dans cardsTop et cardsBottom
+  for (let i = 0; i < sortedStories.length; i++) {
     if (i % 2 === 0) {
-      cardsTop.value.push(stories[i]);
+      cardsTop.value.push(sortedStories[i]);
+      updateLineWidth();
     } else {
-      cardsBottom.value.push(stories[i]);
+      cardsBottom.value.push(sortedStories[i]);
+      updateLineWidth(cardWidth);
     }
   }
+
+  // Mettre à jour la largeur de la ligne de progression
+  updateProgessLineWidth();
 }
+
+// Mettre à jour la largeur de la ligne lors du redimensionnement de la fenêtre
 window.addEventListener("resize", updateLineWidth);
 
+// Lifecycle hook monté
 onMounted(() => {
   updateProgessLineWidth();
   loadStories();
 });
 
-
+// Surveiller les changements de `stories` pour recharger les cartes dynamiquement
+watch(
+  () => stories,
+  (newStories) => {
+    cardsTop.value = [];
+    cardsBottom.value = [];
+    loadStories();
+  }
+);
 </script>

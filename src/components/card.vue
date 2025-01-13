@@ -75,7 +75,8 @@ export default {
         // Emission de l'événement pour informer le parent
         this.$emit('storyDeleted', this.title)
 
-        alert(`"${this.title}" a été supprimé avec succès.`)
+        alert(`"${this.title}" a été supprimé avec succès. La page va se recharger.`)
+        window.location.reload()
       } catch (error) {
         console.error('Erreur lors de la suppression:', error)
         alert(`Erreur lors de la suppression de "${this.title}". Veuillez réessayer.`)

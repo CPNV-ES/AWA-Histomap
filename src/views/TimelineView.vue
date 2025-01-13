@@ -11,7 +11,7 @@
                   :image="cardtop.image"
                   :title="cardtop.title"
                   :description="cardtop.description"
-                  :year="cardtop.year"
+                  :year="cardtop.date"
                   :margin="marginCards"
                 />
               </div>
@@ -47,7 +47,7 @@
                     :image="cardbottom.image"
                     :title="cardbottom.title"
                     :description="cardbottom.description"
-                    :year="cardbottom.year"
+                    :year="cardbottom.date"
                     :margin="marginCards"
                   />
                 </div>
@@ -180,16 +180,25 @@ function loadStories() {
     return;
   }
 
-  // Boucler sur les stories et les ajouter aux cartes
-  for (let i = 0; i < stories.length; i++) {
+  // Trier les stories par date ascendante (du plus ancien au plus récent)
+  const sortedStories = [...stories].sort((a, b) => {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+    return dateA - dateB; // Tri croissant
+  });
+
+  // Distribuer les stories triées dans cardsTop et cardsBottom
+  for (let i = 0; i < sortedStories.length; i++) {
     if (i % 2 === 0) {
-      cardsTop.value.push(stories[i]);
+      cardsTop.value.push(sortedStories[i]);
       updateLineWidth();
     } else {
-      cardsBottom.value.push(stories[i]);
+      cardsBottom.value.push(sortedStories[i]);
       updateLineWidth(cardWidth);
     }
   }
+
+  // Mettre à jour la largeur de la ligne de progression
   updateProgessLineWidth();
 }
 

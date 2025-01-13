@@ -73,7 +73,7 @@ export default {
           <img
             :src=" image "
             alt="OpenAI"
-            class="w-full h-auto rounded-t-lg"
+            class="w-full h-52 rounded-t-lg object-cover"
           />
 
           <div class="p-6">

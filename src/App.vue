@@ -53,7 +53,7 @@ export default {
         @click="modalOpen = true"
         class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded"
         >
-        Add New Item
+        Ajouter un événement
       </button>
       <AddModal :isOpen="modalOpen" @close="handleCloseModal" @createStory="CreateStory" />
     </div>

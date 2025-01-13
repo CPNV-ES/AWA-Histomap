@@ -121,7 +121,7 @@ export default {
                 @click="flipCard"
                 class="inline-flex items-center mt-4 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-500 shadow-md hover:shadow-lg"
               >
-                Voir l'arrière
+                Détails
               </button>
             </div>
           </div>

@@ -34,10 +34,10 @@
         </div>
         <div class="flex justify-end">
           <button type="button" @click="closeModal" class="mr-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
-            Cancel
+            Annuler
           </button>
           <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded">
-            Save
+            Sauvegarder
           </button>
         </div>
       </form>

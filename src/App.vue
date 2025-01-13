@@ -46,7 +46,7 @@ export default {
 </script>
 
 <template>
-    <Timelineview :stories=stories />
+    <Timelineview :stories="stories" />
     <div class="absolute top-0 w-screen flex">
       <div class="p-4 w-48">
         <button

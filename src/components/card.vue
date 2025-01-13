@@ -90,7 +90,7 @@ export default {
 
 <template>
   <div
-    class="h-[220px] w-[400px]"
+    class="h-[220px] w-[400px] hover:scale-105 transition-transform duration-300 ease-in-out"
     :style="{ marginLeft: margin + 'px', marginRight: margin + 'px' }"
   >
     <div class="perspective h-[220px] w-[400px]">
